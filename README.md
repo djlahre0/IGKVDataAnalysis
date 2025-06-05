@@ -1,5 +1,4 @@
-## Download zip then extract
-[Download](https://github.com/djlahre0/IGKVDataAnalysis/archive/refs/heads/main.zip)
+## Download zip then extract [Download](https://github.com/djlahre0/IGKVDataAnalysis/archive/refs/heads/main.zip)
 
 ## Create virtual environment
 ```

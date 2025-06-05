@@ -26,6 +26,10 @@ def factor_analysis(dataframes: Dict[str, pd.DataFrame]):
     for label, curr_df in dataframes.items():
         df = pd.concat([df, curr_df], axis=1)
 
+    # Clean up the DataFrame
+    df = df.loc[:, ~df.columns.duplicated()]
+    df = df.loc[:, df.std() > 1e-6]
+
     df.dropna(inplace=True)
 
     # df = pd.read_excel("Agriculture Data.xlsx", usecols="J:N", skiprows=5, nrows=26)
