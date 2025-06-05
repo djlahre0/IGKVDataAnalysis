@@ -19,3 +19,8 @@ source .venv/Scripts/activate
 ```
 pip install -r requirements.txt
 ```
+
+## To get the latest code
+```
+git pull origin main
+```
