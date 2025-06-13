@@ -170,14 +170,16 @@ def factor_analysis(sheets, img_label=""):
     plt.axvline(0, color="black", linewidth=1)
     plt.xlabel("Factor 1", color="red", weight="bold", fontsize=12)
     plt.ylabel("Factor 2", color="blue", weight="bold", fontsize=12)
+    plt.xlim(-1, 1)
+    plt.ylim(-1, 1)
+    ax.set_aspect("equal")
+    plt.tight_layout()
+    plt.savefig(f"./analysis/results/Rotated Component Matrix Graph of {img_label}")
     plt.title(
         f"Rotated Component Matrix Graph of {img_label} Scheme",
         fontsize=14,
         weight="bold",
     )
-    plt.xlim(-1, 1)
-    plt.ylim(-1, 1)
-    ax.set_aspect("equal")
     plt.tight_layout()
     plt.show()
 
