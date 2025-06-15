@@ -57,13 +57,13 @@ def factor_analysis(sheets, img_label=""):
     ev, _ = fa.get_eigenvalues()
 
     # Scree Plot
-    # plt.plot(range(1, len(ev) + 1), ev, marker="o")
-    # plt.title("Scree Plot")
-    # plt.xlabel("Factors")
-    # plt.ylabel("Eigenvalue")
-    # plt.grid()
-    # plt.tight_layout()
-    # plt.show()
+    plt.plot(range(1, len(ev) + 1), ev, marker="o")
+    plt.title("Scree Plot")
+    plt.xlabel("Factors")
+    plt.ylabel("Eigenvalue")
+    plt.grid()
+    plt.tight_layout()
+    plt.show()
 
     # Step 5: Final Factor Analysis (e.g., 2 factors with Varimax rotation)
     fa = FactorAnalyzer(n_factors=2, rotation="varimax")
