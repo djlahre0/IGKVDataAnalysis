@@ -6,7 +6,7 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 
 def cluster_analysis(df: pd.DataFrame, title="Hierarchical Clustering Dendrogram"):
     """Cluster analysis."""
-    df = df.set_index(df.iloc[:, 0].astype(str) + " " + df.iloc[:, 1].astype(str))
+    df = df.set_index(df.iloc[:, 0].astype(str) + " " + (df.index + 1).astype(str))
     df = df.drop(df.columns[0], axis=1)
     df.columns = ["1", "2", "3", "4"]
     df.dropna(inplace=True)

@@ -33,13 +33,13 @@ def classification_analysis(sheets, title):
     df.columns = df.columns.str.strip()
 
     # Using Internet as target label
-    df["Label"] = df["Internet"].astype(int)
-    X = df.drop(["Internet", "Label"], axis=1)
+    df["Label"] = df["Advanced"].astype(int)
+    X = df.drop(["Advanced", "Label"], axis=1)
 
     df.dropna(inplace=True)  # drop rows with missing values
-    df["Label"] = df["Internet"].astype(int)
+    df["Label"] = df["Advanced"].astype(int)
 
-    X = df.drop(["Internet", "Label"], axis=1)
+    X = df.drop(["Advanced", "Label"], axis=1)
     y = df["Label"]
 
     # Reset index to avoid alignment issues
@@ -78,7 +78,7 @@ def classification_analysis(sheets, title):
     results = []
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.3, random_state=42, stratify=y
+        X, y, test_size=0.4, random_state=42, stratify=y
     )
     cart = DecisionTreeClassifier(criterion="gini", max_depth=3)
     cart.fit(X_train, y_train)
@@ -86,7 +86,7 @@ def classification_analysis(sheets, title):
     results.append(evaluate("CART", y_test, preds))
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.3, random_state=42, stratify=y
+        X, y, test_size=0.4, random_state=42, stratify=y
     )
     j48 = DecisionTreeClassifier(criterion="entropy")
     j48.fit(X_train, y_train)
@@ -94,7 +94,7 @@ def classification_analysis(sheets, title):
     results.append(evaluate("J48", y_test, preds))
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.3, random_state=5
+        X, y, test_size=0.4, random_state=30
     )
     random_forest = RandomForestClassifier(n_estimators=20)
     random_forest.fit(X_train, y_train)
@@ -202,8 +202,7 @@ if __name__ == "__main__":
             ("Sheet9", "C:D", 3, "Gender"),
         ]
 
-        # sheets = load_sheets("Agriculture Data.xlsx", SHEET_CONFIG)
-        sheets = load_sheets("Horticulture Data.xlsx", SHEET_CONFIG)
+        sheets = load_sheets("Agriculture Data.xlsx", SHEET_CONFIG)
         results = classification_analysis(sheets, "Agriculture")
 
         sheets = load_sheets("Horticulture Data.xlsx", SHEET_CONFIG)

@@ -90,7 +90,7 @@ def factor_analysis(sheets, img_label=""):
         ),
     )
 
-    loadings = loadings.drop(['Somewhat Oppose', 'Strongly Oppose'], axis=0)
+    loadings = loadings.drop(['Somewhat Oppose', 'Strongly Oppose', 'Printer', 'Supplymentry Resources', 'Scanner'], axis=0)
 
     final_table = loadings.copy()
     final_table["KMO"] = ""  # Leave blank, as it's a single value
@@ -146,7 +146,7 @@ def factor_analysis(sheets, img_label=""):
             head_width=0.03,
             length_includes_head=True,
         )
-        plt.text(-x * 1.05, y * 1.05, i, color="red", ha="right", va="top")
+        plt.text(-x * 1.05, y * 1.05, i, color="red", ha="right", va="top", fontsize=12, fontweight="bold")
         y += 0.12
 
     y = 0.2
@@ -163,16 +163,32 @@ def factor_analysis(sheets, img_label=""):
             head_width=0.03,
             length_includes_head=True,
         )
-        plt.text(x * 1.05, y * 1.05, i, color="blue", ha="left", va="center")
+        plt.text(x * 1.05, y * 1.05, i, color="blue", ha="left", va="center", fontsize=12, fontweight="bold")
         y += 0.15
 
     plt.axhline(0, color="black", linewidth=1)
     plt.axvline(0, color="black", linewidth=1)
-    plt.xlabel("Factor 1", color="red", weight="bold", fontsize=12)
-    plt.ylabel("Factor 2", color="blue", weight="bold", fontsize=12)
     plt.xlim(-1, 1)
     plt.ylim(-1, 1)
     ax.set_aspect("equal")
+
+    for spine in ["top", "right", "left", "bottom"]:
+        ax.spines[spine].set_visible(False)
+
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.tick_params(left=False, bottom=False)
+
+    # Remove default labels
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+
+    # Custom rotated X-axis label (Factor 1) below the axis
+    plt.text(-0.5, -0.3, "Factor 1", color="red", weight="bold", fontsize=12, rotation=360, ha="center", va="center", transform=ax.transData)
+
+    # Custom rotated Y-axis label (Factor 2) left of the axis
+    plt.text(0.5, -0.3, "Factor 2", color="blue", weight="bold", fontsize=12, rotation=360, ha="center", va="center", transform=ax.transData)
+
     plt.tight_layout()
     plt.savefig(f"./analysis/results/Rotated Component Matrix Graph of {img_label}")
     plt.title(
@@ -193,7 +209,7 @@ if __name__ == "__main__":
             ("Sheet3", "C:D", 3, "Challenges of Language in Rural Influence"),
             ("Sheet5", "C:E", 3, "Resistance to change"),
             ("Sheet6", "C:E", 3, "Lack Of Trained Persons"),
-            # ("Sheet7", "C:E", 3, "Shortage Of Equipments"),
+            ("Sheet7", "C:E", 3, "Shortage Of Equipments"),
             # ("Sheet8", "C:E", 3, "Level of Difficulty"),
             # ("Sheet9", "C:D", 3, "Gender")
         ]
