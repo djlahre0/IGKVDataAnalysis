@@ -33,6 +33,8 @@ def factor_analysis(sheets, img_label=""):
     df.dropna(inplace=True)
     df = df.astype(int)
 
+    df = df.drop(['Somewhat Oppose', 'Strongly Oppose', 'Printer', 'Supplymentry Resources', 'Scanner'], axis=1)
+
     # Drop non-numeric columns
     df_numeric = df.select_dtypes(include="number").dropna()
 
@@ -89,8 +91,6 @@ def factor_analysis(sheets, img_label=""):
             index=["PC1", "PC2"],
         ),
     )
-
-    loadings = loadings.drop(['Somewhat Oppose', 'Strongly Oppose', 'Printer', 'Supplymentry Resources', 'Scanner'], axis=0)
 
     final_table = loadings.copy()
     final_table["KMO"] = ""  # Leave blank, as it's a single value
