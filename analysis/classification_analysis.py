@@ -70,9 +70,9 @@ def classification_analysis(sheets, title):
         return {
             "Model": model_name,
             "Accuracy": f"{acc*100:.2f}%",
-            "Sensitivity": f"{sensitivity:.2f}%",
-            "Specificity": f"{specificity:.2f}%",
-            "F1-Score": f"{f1:.2f}%",
+            "Sensitivity": f"{sensitivity:.2f}",
+            "Specificity": f"{specificity:.2f}",
+            "F1-Score": f"{f1:.2f}",
         }
 
     results = []

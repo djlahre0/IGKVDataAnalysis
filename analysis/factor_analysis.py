@@ -74,7 +74,7 @@ def factor_analysis(sheets, img_label=""):
         fa.loadings_, index=df_numeric.columns, columns=["PC1", "PC2"]
     )
     loadings = loadings.round(3)
-    print("\nFactor Loadings:\n", loadings)
+    # print("\nFactor Loadings:\n", loadings)
 
     variance = fa.get_factor_variance()
     # Multiply proportions by 100 and round
